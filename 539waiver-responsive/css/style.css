@@ -1,0 +1,251 @@
+/*Add your CSS rules*/
+
+/*Some selectors you may need include are
+a.skip, header, .nav_links, .container,
+.intro, html, .text-block, etc.*/
+
+body {
+    position: relative;
+}
+
+a.skip {
+    position: absolute;
+    top: -40px;
+}
+
+a.skip:focus-visible{
+    top: 0px;
+}
+
+header {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav_links {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav_links a:hover, a:focus {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    color: #50C7C7;
+}
+
+.nav_links li{
+    padding-bottom: 5px;
+}
+
+@keyframes logo_ani_small {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 50px;
+    }
+}
+
+#logo {
+    animation: logo_ani_small 1s none;
+}
+
+.container{
+    display:grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    grid-row-gap: 15px;
+}
+
+.intro {
+    background-image: url('../images/header.jpg');
+    height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    grid-column: 1 / -1;
+}
+
+.intro p{
+    padding: 100px 0;
+}
+
+.about-image, .method-image, .clients-image, .contact-image {
+    grid-column: 1 / -1;
+    max-height: 700px;
+    overflow: hidden;
+}
+
+.about, .method, .clients, .contact {
+    grid-column: 2 / 3;
+}
+
+.about, .about-image{
+    grid-row: 2 / auto;
+}
+
+.method, .method-image {
+    grid-row: 3 / auto;
+}
+
+.clients, .clients-image {
+    grid-row: 4 / auto;
+}
+
+.contact, .contact-image {
+    grid-row: 5 / auto;
+}
+
+.text-block {
+    align-self:center;
+}
+
+footer a {
+    color: white;
+}
+
+/* screen-size greater than 750px */
+@media screen and (min-width:750px) {
+    .nav_links {
+        flex-direction: row;
+    }
+
+    .nav_links li{
+        padding: 10px;
+    }
+
+    .container {
+        grid-template-columns: 50px auto 500px auto 50px;
+        grid-template-rows: 400px 400px 400px 400px 400px;
+    }
+
+    .about, .clients, .method-image, .contact-image {
+        grid-column: 3 / 5;
+    }
+
+    .about-image, .clients-image, .method, .contact {
+        grid-column: 2 / 4;
+    }
+}
+
+/* screen-size greater than 1125px */
+@media screen and (min-width: 1125px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    @keyframes logo_ani_large{
+        0% {
+            width: 50px;
+            left: 0;
+        }
+
+        50% {
+            width: 150px;
+            left: 450px;
+        }
+
+        100% {
+            width: 50px;
+            left: 0;
+        }
+    }
+
+    #logo {
+        animation: logo_ani_large 1s none;
+    }
+
+    .container {
+        grid-template-columns: 15px 75px 1fr 25px 1fr 75px 15px;
+        grid-template-rows: 400px 400px 400px;
+    }
+
+    .about-image {
+        grid-column: 2 / 7;
+    }
+
+    .clients-image {
+        grid-row: 3 / auto;
+        grid-column: 2 / 7;
+    }
+
+    .method-image, .contact-image {
+        display: none;
+    }
+
+    .about {
+        grid-row: 2 / auto;
+        grid-column: 3 / 4;
+    }
+
+    .method {
+        grid-row: 2 / auto;
+        grid-column: 5 / 6;
+    }
+
+    .clients {
+        grid-row: 3 / auto;
+        grid-column: 3 / 4;
+    }
+
+    .contact {
+        grid-row: 3 / auto;
+        grid-column: 5 / 6;
+    }
+}
+
+/* reduce motion */
+@media screen and (prefers-reduced-motion: reduce) {
+    #logo {
+        animation: none;
+    }
+
+    a.skip{
+        transition: none;
+    }
+
+    html {
+        scroll-behavior: initial;
+    }
+
+    .intro {
+        background-attachment: scroll;
+    }
+}
+
+@media print {
+    .intro {
+        background-image: none;
+        height: auto;
+    }
+
+    .intro p {
+        padding: 0;
+    }
+
+    .about-image, .clients-image, .contact-image, .method-image {
+        display: none;
+    }
+
+    .nav_links {
+        flex-direction: row;
+    }
+
+    .nav_links li {
+        padding: 10px;
+    }
+
+    .text-block{
+        min-height: initial;
+    }
+
+    .container {
+        height: auto;
+    }
+}
